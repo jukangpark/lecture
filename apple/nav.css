@@ -1,0 +1,97 @@
+/* 
+
+    여기서 nav 에 style 을 줄거에요
+
+*/
+
+#nav {
+  /* display: flex; */
+  justify-content: center;
+  height: 44px;
+  line-height: 44px;
+  position: fixed;
+  width: 100%;
+  font-size: 12px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background-color: black;
+  opacity: 0.8;
+}
+
+#nav > ul {
+  display: flex;
+  justify-content: center;
+}
+
+#nav > ul > li {
+  margin: 0 8px;
+  color: white;
+  text-align: center;
+  margin: 0 20px;
+  opacity: 0.6;
+}
+
+#nav > ul > li:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#banner {
+  background-color: black;
+  color: white;
+  height: 700px;
+  background-image: url("./assets/img/banner.jpg");
+  background-size: 75%;
+  background-position: bottom;
+  text-align: center;
+  padding-top: 100px;
+  box-sizing: border-box;
+}
+
+#banner > h1 {
+  font-size: 55px;
+  font-weight: bold;
+}
+
+#banner > p {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.fa-apple {
+  width: 30px;
+  margin: 0 8px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.fa-magnifying-glass {
+  width: 30px;
+  margin: 0 8px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.fa-cart-shopping {
+  width: 30px;
+  margin: 0 8px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: #2997ff;
+  margin: 20px 8px;
+}
+
+.btn > a {
+  color: #2997ff;
+  font-size: 21px;
+  text-decoration: none;
+}
