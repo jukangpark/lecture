@@ -1,11 +1,7 @@
-import Join from "./Join";
+import Router from "./Router";
 
 const App = () => {
-  return (
-    <div>
-      <Join />
-    </div>
-  );
+  return <Router />;
 };
 
 export default App;
