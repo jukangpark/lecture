@@ -59,5 +59,8 @@ export const login = async (req, res) => {
     }
   );
   res.cookie("user", token);
-  return res.status(200).send({ result: "ok", message: "로그인 완료" }).end();
+  return res
+    .status(200)
+    .send({ isLoggedIn: true, message: "로그인 완료" })
+    .end();
 };

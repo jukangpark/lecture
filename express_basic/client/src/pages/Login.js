@@ -25,7 +25,10 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.isLoggedIn) {
+          alert(data.message);
+          window.location.replace("/");
+        }
       });
   };
 

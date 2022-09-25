@@ -1,11 +1,14 @@
 // import dotenv from "dotenv";
 // dotenv.config();
+
 import "./db";
 import express from "express"; // express 모듈 불러오기
 import userRouter from "./routers/userRouter";
 
 // express 사용
 const app = express();
+const cors = require("cors");
+// cors policy 해결
 
 // app.use 는 미들웨어를 사용하겠다는 의미이다.
 // Express 4.16.0 버전 부터 body-parser 의 일부 기능이 익스프레스에 내장 body-parser 에 연결
@@ -19,6 +22,7 @@ const app = express();
 // urlencoded 만 마운트하면 json 양식의 파일을 해석하지 못하고 그 반대의 경우도 마찬가지이다.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors()); // npm i cors
 
 app.use((req, res, next) => {
   // 여기서 Auth 처리 가 가능하다.
