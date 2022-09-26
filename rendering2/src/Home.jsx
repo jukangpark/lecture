@@ -33,6 +33,18 @@ const Home = () => {
     return weight > 1000;
   }, [weight]);
 
+  const computeExpensiveValue = (a, b) => {
+    let i = 0;
+    while (i < 100000) {
+      i++;
+    }
+    return a + b;
+  };
+
+  const memoizedValue = useMemo(() => computeExpensiveValue(1, 5), [1, 5]);
+
+  console.log(memoizedValue);
+
   // weight 값이 변경되면, Text 컴포넌트를 갱신할 때마다 expensiveTask() 를 실행하기 때문에,
   // 몇 초간 렌더링 지연이 생긴다.
 
