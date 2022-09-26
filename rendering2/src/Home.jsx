@@ -26,7 +26,9 @@ const Home = () => {
 
   const expensiveTask = useMemo(() => {
     let i = 0;
-    while (i < 10000000) i++;
+    while (i < 10000000) {
+      i++;
+    }
     console.log("expensiveTask 가 실행되었습니다.");
     return weight > 1000;
   }, [weight]);
@@ -51,6 +53,8 @@ const Home = () => {
     </div>
   );
 };
+// 우리는 button 에서 props 로 함수를 넘겨주게 되는데, 자바스크립트에서 함수를 값 처럼 넘겨줄 수 있는 이유가 머임?
+// 자바스크립트에서 함수는 실제로 객체이다. -> 어떤 객체? 일급 객체
 
 export default Home;
 
@@ -77,3 +81,13 @@ setInterval, setTimeout 을 사용하여 등록한 작업들 clear 하기 (clear
 // 훅은 전달된 콜백 함수를 메모이제이션 하여 반환하고, 이 함수는 오직 의존하는 상태값이 변경된 경우에만 갱신된다.
 // 오직 의존하는 state 가 변경된 경우에만 갱신되기 때문에, Button 으로 props 을 통해 넘겨준 저 함수들은
 // React.memo 에 의하여 Button 의 불필요한 리렌더링을 막아주게 된다.
+
+// 리엑트에서 컴포넌트가 리렌더링 되는 조건
+/* 
+
+  1. state 가 업데이트 될 때
+  2. props 가 업데이트 될 때
+  3. 부모 컴포넌트가 리렌더링 될 때
+  4. this.forceUpdate() 가 강제로 트리거 될 때,
+
+*/
