@@ -1,4 +1,29 @@
 const PromiseTest = () => {
+  // Promise 란?
+  // 자바스크립트 표준 내장 객체 안의
+  // 제어 추상화 객체(코드 구조화에 도움을 줌, 특히 비동기 코드를 깊게 중첩된 함수 없이 작성 할 수 있다)이다.
+  // 표준 내장 객체 는 전역 객체와 다름.
+
+  // new 키워드란 뭔가요?
+  // new 연산자와 생성자 함수
+
+  // 자바스크립트에서 new 키워드를 통해 객체를 생성해보도록 할게요
+  // 자바스크립트에서 생성자 함수는 화살표 함수를 통해 만들 수 없음.. const user = () => return 암튼 이게 안됨.
+  // function (ES5) vs 화살표 함수
+  // function 키워드로 생성한 일반 함수 vs 화살표 함수의 가장 큰 차이는 this 이다.
+
+  function User(name) {
+    this.name = name;
+    this.isAdmin = false;
+  }
+
+  console.log(new User("주강"));
+
+  // 웹 브라우저 콘솔에서 console.log(this) 를 실행시켜보면
+  // Window 객체가 나옴. -> 이거는 웹 브라우저를 의미함
+  // console.log(this.innerWidth) 현재 브라우저의 너비
+  // console.log(this.innerHeight) 현재 브라우저의 높이
+
   // new Promise 에 전달되는 함수는 실행함수 라고 부릅니다.
   // executor 는 new Promise 가 만들어질 때 자동으로 '실행'되는데
   // executor 에서는 결과를 즉시 얻든 늦게 얻든 상관없이, 상황에 따라

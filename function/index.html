@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <script>
+      // 화살표 함수(ES6) vs function 키워드(ES5)
+
+      // 매개 변수 지정 방법
+      () => {
+        console.log("매개변수가 없을 경우");
+      };
+
+      (x) => {
+        console.log("매개변수가 x한개인 경우 소괄호 생략 가능", x);
+      };
+
+      (x, y) => {
+        console.log(
+          `매개 변수가 여러개일 경우 소괄호를 생략할 수 없어요${(x, y)}`
+        );
+      };
+
+      // 함수 몸체 지정 방법
+
+      (x) => {
+        return x * x; // single line block
+      };
+
+      (x) => x * x;
+      // 함수 몸체가 한줄의 구문이라면 중괄호를 생략할 수 있으며, 암묵적으로 return 됩니다.
+      // 위의함수와 동일해요!
+
+      () => {
+        return { a: 1 };
+      };
+
+      () => ({ a: 1 }); // 위 함수와 동일하다. 객체를 반환할 때 소괄호를 사용한다.
+      // 소괄호 () 중괄호 {} 대괄호 []
+
+      () => {
+        // multi line block
+        const x = 10;
+        return x * x;
+      };
+
+      // 화살표 함수는 '익명 함수' 로만 사용할 수 있다.
+      // 따라서 화살표 함수를 '호출' 하기 위해서는 함수 표현식을 사용해야 한다.
+
+      const add = function (x) {
+        return x + x;
+      };
+
+      console.log(add(1)); // 2
+
+      const arrowAdd = (x) => x + x;
+
+      console.log(arrowAdd(1)); // 2
+
+      // 또는 콜백함수로 사용할 수 있다.
+      // 이 경우 일반적인 함수 표현식보다 표현이 간결하다.
+
+      // 콜백이란?????
+      // 자바스크립트의 함수는 일급 객체다.
+
+      /* 
+
+      자바스크립트에서 함수는
+
+       1. 변수나 데이터안에 담길 수 있고,
+       2. 매개변수로 전달될 수 있고,
+       3. 반환 값으로 사용할 수 있고,
+       4. 실행도중에 생성될 수 있다.
+
+       콜백함수는 이 중에서 2번째 특징을 활용한 것이다.
+
+       */
+
+      // 콜백함수란 간단히 말해 다른 함수에 매개변수로 넘겨준 함수를 말한다.
+      // 매개변수로 넘겨받은 함수는 일단 넘겨받고, 때가 되면 호출(called back) 한다는 것이 콜백함수의 개념이다
+
+      const checkPig = (weight, pig, noPig) => {
+        weight > 80 ? pig() : noPig();
+      };
+
+      const pig = () => {
+        console.log("넌 돼지입니다");
+      };
+
+      const noPig = () => {
+        console.log("넌 돼지가 아닙니다");
+      };
+
+      checkPig(80, pig, noPig);
+
+      // checkPig 함수가 먼저 호출되고, 매개변수로 들어온 weight 값에 따라,
+      // pig 또는 noPig 함수 둘 중 한가지가 나중에 호출된다.
+
+      // 아니 그러면 콜백함수가 필요한 이유가 머에요?
+      // https://velog.io/@dudgks5846/%EB%B9%84%EB%8F%99%EA%B8%B0-%ED%95%A8%EC%88%98%EC%99%80-callback-%ED%95%A8%EC%88%98
+
+      // 비동기 ????? 처리할 때 콜백사용하는 이유?
+    </script>
+  </body>
+</html>
