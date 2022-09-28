@@ -42,6 +42,7 @@ const PromiseTest = () => {
   // 한편 핸들러가 값을 반환할 때엔 이 값이 프라미스의 result 가 됩니다. 따라서 .then 은 이 값을 이용해 호출됩니다.
 
   // 초보자는 프라미스 하나에 .then 을 여러개 추가하고 나서, 이를 체이닝이라고 착각하는 경우가 있습니다. 하지만 이는 체이닝이 아닙니다.
+  // 주석 처리 : 이 커밑은 user.name 은 jukangpark 이고, user.email 은 skyxxx9339@naver.com
 
   console.log(
     "fetch 함수를 통해서 리턴된 건? ",
