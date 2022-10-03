@@ -1,0 +1,31 @@
+body {
+  margin: 0 20%;
+}
+
+.carousel {
+  cursor: grab;
+
+  overflow: hidden;
+  /* background-color: red; */
+}
+
+.inner-carousel {
+  display: flex;
+  /* background-color: lightblue; */
+}
+
+.item {
+  padding: 20px;
+  /* min-height: 40rem;
+  min-width: 30rem; */
+}
+
+.item div {
+  min-height: 40rem;
+  min-width: 30rem;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
