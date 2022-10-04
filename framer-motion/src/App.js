@@ -4,30 +4,6 @@ import styled from "styled-components";
 import { useScroll } from "framer-motion";
 import { makeImagePath } from "./utils";
 
-const Box2 = styled(motion.div)`
-  width: 200px;
-  height: 200px;
-  background-color: "black";
-  text-align: center;
-`;
-
-const boxVariants = {
-  normal: {
-    scale: 1,
-  },
-  hover: {
-    // zIndex: 99,
-    scale: 1.3,
-    y: -50,
-    backgroundColor: "black",
-    color: "white",
-    transition: {
-      duration: 0.15,
-      type: "tween",
-    },
-  },
-};
-
 const Btn = styled.button``;
 
 function ScrollBar() {
@@ -36,7 +12,7 @@ function ScrollBar() {
 
   useEffect(() => {
     scrollYProgress.onChange((latest) => {
-      // console.log("Page scroll:", latest);
+      console.log("Page scroll:", latest);
       // scrollXProgress : The scroll position between the defined offsets, as a value between 0 and 1
     });
   }, []);
@@ -73,46 +49,8 @@ const Box = ({ x, y }) => (
 );
 
 const App = () => {
-  const section1 = useRef();
-  const section2 = useRef();
-  useEffect(() => {
-    //clientHeight 는 요소의 내부 높이입니다. 패딩 값은 포함되며, 스크롤바, 테두리, 마진은 제외됩니다.
-    // offsetHeight 는 요소의 높이입니다. 패딩, 스크롤 바, 테두리(Border)가 포함됩니다. 마진은 제외됩니다.
-    // scrollHeight  는 요소에 들어있는 컨텐츠의 전체 높이입니다. 패딩과 테두리가 포함됩니다. 마진은 제외됩니다.
-    // offsetTop 은 document 와 얼마나 떨어져있는지를 알려줌
-
-    console.log("section1 의 offsetTop", section1.current.offsetTop);
-    console.log("section1 의 offsetTop", section2.current.offsetTop);
-    console.log("section1 의 clientScrollTop", section1.current.scrollTop);
-  }, []);
-
-  window.addEventListener("scroll", () => {
-    console.log("html 에서 scroll된 px", window.scrollY);
-    if (window.scrollY + 30 > section1.current.offsetTop) {
-      section1.current.style.backgroundColor = "whitesmoke";
-      section1.current.style.marginLeft = 0;
-    }
-    if (window.scrollY < section1.current.offsetTop) {
-      section1.current.style.backgroundColor = "transparent";
-      section1.current.style.marginLeft = "-50px";
-    }
-
-    if (window.scrollY + 30 > section2.current.offsetTop) {
-      section2.current.style.backgroundColor = "whitesmoke";
-    }
-    if (window.scrollY < section2.current.offsetTop) {
-      section2.current.style.backgroundColor = "transparent";
-    }
-  });
-  // console.log("section1 의 clientHeight", section1.current.clientHeight); 이렇게 하면 제대로 동작 안함.. 아직 element가 렌더링 안되서
-
   const [width, setWidth] = useState(0);
   const carousel = useRef();
-
-  // useEffect(() => {
-  //   // console.log(carousel.current.scrollWidth, carousel.current.offsetWidth);
-  //   setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-  // }, []);
 
   const [movies, setMovies] = useState([]);
 
@@ -129,6 +67,12 @@ const App = () => {
         setMovies(data.results.slice(0, 10));
       });
   }, []);
+
+  useEffect(() => {
+    console.log(carousel.current.scrollWidth, carousel.current.offsetWidth);
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+  }, []);
+
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
@@ -148,10 +92,7 @@ const App = () => {
         <Btn onClick={plusY}>plusY</Btn>
       </div>
       <Box x={x} y={y} />
-      <Box2 variants={boxVariants} initial="normal" whileHover="hover">
-        Box
-      </Box2>
-      {/* <motion.div
+      <motion.div
         className="carousel"
         ref={carousel}
         whileTap={{ cursor: "grabbing" }}
@@ -163,30 +104,16 @@ const App = () => {
         >
           {movies?.map((movie, index) => (
             <motion.div className="item" key={index}>
-              <div
-                style={{
-                  backgroundImage: `url(${makeImagePath(
-                    movie.backdrop_path,
-                    "w500"
-                  )})`,
-                }}
+              <img
+                src={`${makeImagePath(movie.backdrop_path, "w500")}`}
+                alt={`${movie.title}`}
               />
             </motion.div>
           ))}
         </motion.div>
-      </motion.div> */}
-      <h1>section1</h1>
-      <section
-        style={{
-          height: "100vh",
-          transitionDuration: "400ms",
-          marginLeft: "-100px",
-        }}
-        ref={section1}
-      />
-
-      <h1>section2</h1>
-      <section style={{ height: "100vh" }} ref={section2}></section>
+      </motion.div>
+      <section style={{ height: "100vh" }}>section</section>
+      <section style={{ height: "100vh" }}>section</section>
       <section style={{ height: "100vh" }}>section</section>
     </div>
   );
