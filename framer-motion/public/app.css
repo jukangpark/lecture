@@ -3,9 +3,10 @@ body {
 }
 
 .carousel {
+  width: 1200px;
   cursor: grab;
 
-  overflow: hidden;
+  /* overflow: hidden; */
   /* background-color: red; */
 }
 
