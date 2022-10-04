@@ -4,6 +4,30 @@ import styled from "styled-components";
 import { useScroll } from "framer-motion";
 import { makeImagePath } from "./utils";
 
+const Box2 = styled(motion.div)`
+  width: 200px;
+  height: 200px;
+  background-color: "black";
+  text-align: center;
+`;
+
+const boxVariants = {
+  normal: {
+    scale: 1,
+  },
+  hover: {
+    // zIndex: 99,
+    scale: 1.3,
+    y: -50,
+    backgroundColor: "black",
+    color: "white",
+    transition: {
+      duration: 0.15,
+      type: "tween",
+    },
+  },
+};
+
 const Btn = styled.button``;
 
 function ScrollBar() {
@@ -124,6 +148,9 @@ const App = () => {
         <Btn onClick={plusY}>plusY</Btn>
       </div>
       <Box x={x} y={y} />
+      <Box2 variants={boxVariants} initial="normal" whileHover="hover">
+        Box
+      </Box2>
       {/* <motion.div
         className="carousel"
         ref={carousel}
