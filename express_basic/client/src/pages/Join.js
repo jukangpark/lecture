@@ -1,5 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const Join = () => {
   // http://localhost:9000/user/join 으로 POST 하면 {status: ok, message: 회원가입 완료}
+
+  const navigate = useNavigate();
+  // navigate("/login");
   return (
     <form action="http://localhost:9000/user/join" method="POST">
       <div>

@@ -58,6 +58,12 @@ export const login = async (req, res) => {
       expiresIn: "10h",
     }
   );
+
+  console.log(token);
+  // 토큰이 발급되기는 하는데, cookie 에 못담아주고 있음 이유가 머임??
+  // import cookieParser from "cookie-parser";
+  // npm i cookie-parser
+  // app.use("cookie-parser");
   res.cookie("user", token);
   return res
     .status(200)

@@ -4,6 +4,10 @@
 import "./db";
 import express from "express"; // express 모듈 불러오기
 import userRouter from "./routers/userRouter";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+
+const logger = morgan("dev");
 
 // express 사용
 const app = express();
@@ -20,9 +24,18 @@ const cors = require("cors");
 // 2. json
 // 이렇게 되어 있는 데이터를 해석하여 req.body 를 통해 읽을 수 있게 한다.
 // urlencoded 만 마운트하면 json 양식의 파일을 해석하지 못하고 그 반대의 경우도 마찬가지이다.
+
+app.use(logger);
+
+// app.use(cookieParser);
+
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors()); // npm i cors
+app.use(cors({ credentials: true, origin: true }));
+
+// npm i cors
+// cookie 를 cors 뚫고 보내기위해
 
 app.use((req, res, next) => {
   // 여기서 Auth 처리 가 가능하다.
