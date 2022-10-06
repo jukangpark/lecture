@@ -13,7 +13,8 @@ const Login = () => {
     setValue("id", "");
     setValue("password", "");
 
-    fetch("http://localhost:9000/user/login", {
+    // http://localhost:3000 로 보내는 요청을 -> http://localhost:9000 처럼 바꿔줌
+    fetch("/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

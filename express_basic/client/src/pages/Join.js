@@ -6,7 +6,7 @@ const Join = () => {
   const navigate = useNavigate();
   // navigate("/login");
   return (
-    <form action="http://localhost:9000/user/join" method="POST">
+    <form action="/user/join" method="POST">
       <div>
         <span> 아이디 </span>
         <input placeholder="id" type="id" name="id"></input>

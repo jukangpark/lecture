@@ -32,7 +32,7 @@ app.use(logger);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: true }));
+// app.use(cors({ credentials: true, origin: true }));
 
 // npm i cors
 // cookie 를 cors 뚫고 보내기위해
