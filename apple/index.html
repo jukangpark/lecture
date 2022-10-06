@@ -7,6 +7,7 @@
     />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="section.css" />
     <script
       src="https://kit.fontawesome.com/87c2cdf875.js"
       crossorigin="anonymous"
@@ -37,13 +38,46 @@
       <button class="btn"><a href="#">Learn More ></a></button>
       <button class="btn"><a href="#">Buy ></a></button>
     </div>
-    <section>
+    <section id="section_banner">
       <div>
         <h1>iPhone14</h1>
         <p>Big and Bigger</p>
       </div>
     </section>
+    <section class="section_div">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </section>
     <section></section>
-    <section></section>
+    <script>
+      const list = document.getElementsByClassName("item");
+      // console.log(list[0]); HTML 엘리먼트가 리턴되네
+
+      window.addEventListener("scroll", () => {
+        for (let i = 0; i < list.length; i++) {
+          console.log(i, list[i]);
+          if (scrollY > list[i].offsetTop + 10) {
+            list[i].style.backgroundColor = "whitesmoke";
+            list[i].style.marginLeft = 0;
+          }
+          if (scrollY <= list[i].offsetTop + 10) {
+            list[i].style.backgroundColor = "";
+            list[i].style.marginLeft = "";
+          }
+        }
+        // if (scrollY > list[0].offsetTop + 10) {
+        //   list[0].style.backgroundColor = "whitesmoke";
+        //   list[0].style.marginLeft = 0;
+        // }
+        // if (scrollY <= list[0].offsetTop + 10) {
+        //   list[0].style.backgroundColor = "";
+        //   list[0].style.marginLeft = "";
+        // }
+      });
+    </script>
   </body>
 </html>

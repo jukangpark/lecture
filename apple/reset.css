@@ -102,16 +102,6 @@ header,
 hgroup,
 menu,
 nav,
-section {
-  display: block;
-}
-html {
-  height: 400%;
-}
-body {
-  height: 400%;
-  line-height: 1;
-}
 ol,
 ul {
   list-style: none;
