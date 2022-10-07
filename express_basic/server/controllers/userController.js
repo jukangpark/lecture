@@ -64,9 +64,19 @@ export const login = async (req, res) => {
   // import cookieParser from "cookie-parser";
   // npm i cookie-parser
   // app.use("cookie-parser");
+
   res.cookie("user", token);
   return res
     .status(200)
     .send({ isLoggedIn: true, message: "로그인 완료" })
     .end();
+};
+
+export const comment = (req, res) => {
+  console.log(req.body);
+  console.log(res.locals.user);
+  // 여기서 유저가 가지고 있는 user_id 로 유저를 찾아서,
+  // 해당 유저가 가진 comments 라는 배열안에 여기서 받아온 req.body.comment 값을 넣어주면 완료!
+
+  res.status(200).send({ message: "댓글 등록 완료" }).end();
 };

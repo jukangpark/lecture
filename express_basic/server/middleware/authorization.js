@@ -18,6 +18,8 @@ export const verifyToken = (req, res, next) => {
       });
     }
   } catch (err) {
-    res.status(401).json({ error: "token expired" });
+    res
+      .status(401)
+      .json({ error: "token expired", message: "토큰이 만료되었습니다." });
   }
 };
