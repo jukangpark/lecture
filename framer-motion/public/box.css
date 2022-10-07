@@ -1,9 +1,0 @@
-.box {
-  width: 200px;
-  border-radius: 100%;
-  background-color: pink;
-  display: flex;
-  text-align: center;
-  line-height: 200px;
-  justify-content: center;
-}
