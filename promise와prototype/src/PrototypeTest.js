@@ -1,4 +1,5 @@
 const Prototype = () => {
+  console.log(Array);
   // new 키워드란 뭔가요?
   // new 연산자와 생성자 함수
 

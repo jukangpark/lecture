@@ -1,6 +1,7 @@
 import { useRecoilState } from "recoil";
 import { isDarkState } from "./atom";
 import styled from "styled-components";
+import Child from "./Child";
 
 const Btn = styled.button`
   width: 200px;
@@ -20,6 +21,7 @@ const Home = () => {
       <p>컨텐츠</p>
       <div>
         <Btn onClick={handleTheme}>{isDark ? "라이트 모드" : "다크 모드"}</Btn>
+        <Child />
       </div>
     </div>
   );

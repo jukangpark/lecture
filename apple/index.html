@@ -60,11 +60,12 @@
       window.addEventListener("scroll", () => {
         for (let i = 0; i < list.length; i++) {
           console.log(i, list[i]);
-          if (scrollY > list[i].offsetTop + 10) {
+
+          if (scrollY > list[i].offsetTop) {
             list[i].style.backgroundColor = "whitesmoke";
             list[i].style.marginLeft = 0;
           }
-          if (scrollY <= list[i].offsetTop + 10) {
+          if (scrollY <= list[i].offsetTop) {
             list[i].style.backgroundColor = "";
             list[i].style.marginLeft = "";
           }

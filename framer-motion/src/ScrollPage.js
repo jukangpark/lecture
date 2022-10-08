@@ -32,6 +32,12 @@ function App() {
   );
 
   const { scrollY, scrollYProgress } = useScroll();
+
+  // scrollY  -> 스크롤이 얼마나 되었는지에 대한 px값이,
+  // scrollYProgress -> 스크롤일 얼마나 되었는지에 %
+
+  // offsetTop -> div 요소가 document 최상단점에서 몇px 만큼떨어져있는지
+
   useEffect(() => {
     scrollY.onChange(() => {
       console.log(scrollY.get(), scrollYProgress.get());
