@@ -6,7 +6,7 @@ import Router from "./Router";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -67,9 +67,13 @@ a{
   color: ${(props) => props.theme.textColor};
 }
 button {
+  width: 200px;
+  height: 50px;
   outline: none;
-  border: 0;
-  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: ${(props) => props.theme.textColor};
   font-family: 'Noto Sans KR', sans-serif;
   padding: 0;
   color: ${(props) => props.theme.btnColor};

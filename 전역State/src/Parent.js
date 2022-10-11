@@ -15,15 +15,14 @@ const Parent = () => {
     (async function fetchData() {
       const res = await fetch("https://jsonplaceholder.typicode.com/posts");
       const data = await res.json();
+      console.log("우리가 fetchApi 를 통해 받아온 데이터", data);
       setUsers(data);
     })();
   }, [setUsers]);
 
   return (
     <div>
-      <h3>Parent 컴포넌트</h3>
-      <p>Content</p>
-
+      <h1>Parent 컴포넌트</h1>
       <Child />
     </div>
   );
