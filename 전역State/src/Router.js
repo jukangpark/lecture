@@ -5,6 +5,7 @@ import ContextApiTest2 from "./pages/ContextApiTest2";
 import ContextApiTest3 from "./pages/ContextApiTest3";
 import ReducerTest from "./pages/ReducerTest";
 import ReduxTest from "./pages/ReduxTest";
+import ReduxAsyncTest from "./pages/ReduxAsyncTest";
 import ReduxThunkTest from "./pages/ReduxThunkTest";
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/contextapi2" element={<ContextApiTest2 />} />
         <Route path="/contextapi3" element={<ContextApiTest3 />} />
         <Route path="/reducertest" element={<ReducerTest />} />
+        <Route path="/reduxasynctest" element={<ReduxAsyncTest />} />
         <Route path="/reduxthunktest" element={<ReduxThunkTest />} />
       </Routes>
     </BrowserRouter>
