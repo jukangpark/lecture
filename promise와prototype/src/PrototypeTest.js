@@ -194,10 +194,21 @@ const Prototype = () => {
   // 즉 가장 먼저 발견된 메서드를 실행하게 됩니다.
   // 이건 스코프 체인이랑 개념이 같죠!
 
+  // 자바스크립트가 임시로
+  // 문자 리터럴에 해당하는
+  // String 생성자 함수의 인스턴스를 만들어서
+  // 그 프로토타입에 있는 메서드를 적용해서
+  // 원하는 결과를 얻게 한 다음에
+  // 해당 인스턴스를 폐기하는 원리로 동작함.
+
+  // Number 형도 마찬가지
+
   const string3 = "asdfa";
+
   console.log(string3.hasOwnProperty("age"));
 
   console.log(Object.getPrototypeOf(string3));
+  // string3 은 객체게 아닌데도 불구하고, 프로퍼티들이 존재한다.
 
   return (
     <div>

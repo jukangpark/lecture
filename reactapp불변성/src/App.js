@@ -2,6 +2,17 @@ import { useState } from "react";
 
 const App = () => {
   const [user, setUser] = useState({ name: "jukang" });
+  // 메모리 주소값만 비교해 ->
+
+  const num = 123;
+
+  let numCopy = num;
+
+  numCopy = 14;
+
+  console.log(num);
+
+  // 객체는 객체안의 프로퍼리를 변경했다고 해서 해당 객체의 메모리주소값이 바꾸지ㅣ는 않아요!
 
   // React 에서는 State 가 변경이 되면 -> 컴포넌트가 리렌더링을 하게 되잖아요
   // React 에서는 얕은 비교를 수행하게 됩니다. -> 객체가 있으면, 객체 안의 프로퍼티까지 보지는 않아요!
@@ -21,19 +32,27 @@ const App = () => {
   // 객체, 배열,      string, number, boolean, -> 원시형 데이터
 
   const jukang = { name: "jukang" };
-  const jukangCopy = jukang; // 그냥 둘이 쌍둥이가 되버려요! 둘이 같은 메모리 주소값을 가져요!
+  const jukangCopy = { ...jukang, name: "123" }; // 그냥 둘이 쌍둥이가 되버려요! 둘이 같은 메모리 주소값을 가져요!
 
-  jukang.name = "Yunju";
+  // 객체 (참조형)
+
+  // 원시형 - number, string
+
+  console.log(jukang, jukangCopy);
 
   console.log("juknagCopy", jukangCopy, "jukang", jukang);
 
   const handleChange = (e) => {
     setUser((user) => {
       // user.name = e.target.value;
-
       // React 에서 불변성응ㄹ 지켜줘야하는 이유고, immer.js
+      // user.name = e.target.value;
+
       return { ...user, name: e.target.value };
+      // return { ...user, name: e.target.value };
     });
+
+    console.log(user);
 
     // setUser((user) => {
     //   return { ...user, name: e.target.value };
@@ -42,10 +61,20 @@ const App = () => {
     // });
   };
 
+  const [number, setNumber] = useState(0);
+
+  const handleClick = () => {
+    setNumber(number + 1);
+  };
+
+  // 컴포넌트가 리렌더링되는 조건 4가지를 외우고있어야돼.
+  // state 가 변경이 되었을때, -> 메모리 주소 값이 변경이되었을때,
+
   return (
     <div>
       <span>{user.name}</span>
       <input onChange={handleChange}></input>
+      <button onClick={handleClick}>{number}</button>
     </div>
   );
 };

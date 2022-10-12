@@ -1,12 +1,10 @@
-const ReduxTest = () => {
+const Redux1 = () => {
   // npm i redux
   // npm i react-redux
 
   // 리덕스에서 사용되는 키워드 숙지하기.
 
-  /*
-
-  1. Action 액션 
+  /*  1. Action 액션 
     - 상태에 어떤 변화가 필요하게 될 때, 액션을 발생시킨다. 
     이는 하나의 ‘객체’이다. 
     type 필드를 필수적으로 가지고 있어야 하고, 
@@ -36,6 +34,8 @@ const ReduxTest = () => {
     스토어는 리듀서 함수를 실행시켜서 해당 액션을 처리하는 로직이 있다면, 
     액션을 참고하여 새로운 상태를 만들어준다.
 
+
+
   6. subscribe 구독
 
    */
@@ -46,4 +46,4 @@ const ReduxTest = () => {
   );
 };
 
-export default ReduxTest;
+export default Redux1;

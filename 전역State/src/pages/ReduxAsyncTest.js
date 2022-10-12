@@ -1,7 +1,7 @@
 // import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
-import thunk from "../reduxThunk/action";
+import { thunk } from "../reduxThunk/action";
 
 const initialState = {
   payload: [],
@@ -31,6 +31,8 @@ const ReduxAsyncTest = () => {
       payload: data,
     };
   };
+
+  console.log(fetchData()); // Promise 객체가 리턴됨.
 
   const dispatch = useDispatch();
 
