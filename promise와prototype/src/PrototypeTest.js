@@ -1,4 +1,6 @@
 const Prototype = () => {
+  // 자바스크립트는 어떤 언어입니까?
+  // 명령형 (imperative) 함수형(functional) 포로토타입(prototype-based) 기반 객체지향 프로그래밍을 지원하는 멀티 패러다임 프로그래밍 언어 이다.
   // 자바스크립트는 '프로토타입'으로 상속을 구현
 
   // 생성자 함수를 통해 instance(자식 객체) 생성하기
@@ -6,6 +8,10 @@ const Prototype = () => {
     // 3. 생성자 실행시에는 새롭게 만들어진 객체를 가리킨다.
     this.name = name;
     this.age = age;
+    // this.getAge = function () {
+    //  return this.age; 이렇게 생성자 함수내에 메서드를 정의하게 되면,
+    // 각 인스턴스마다 메서드를 가지게 되기 때문에, 메모리 낭비가 심하다. 따라서 프로토타입으로 상속을 구현시켜주면 좋다.
+    // }
   }
 
   const jukang = new Person("jukang", 30);
@@ -26,7 +32,9 @@ const Prototype = () => {
   };
 
   // prototype 으로 상속을 구현하게 되면
-  // 메모리 용량 최적화,
+  // 메모리 용량 최적화, -> 각 인스턴스 마다 메서드를 만들어주게되면 메모리적으로 굉장히 낭비가 되기 때문
+  // 따라서 프로토타입으로 인한 상속을 구현하게 되면
+  // 메모리를 효율적으로 사용할 수 있다.
   // 특정 집단의 공통적 속성 파악 가능
 
   console.log(jukang.getName()); // jukang
