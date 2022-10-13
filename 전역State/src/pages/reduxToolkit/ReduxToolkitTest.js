@@ -1,3 +1,8 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../../reduxToolkit/action";
+import { fetchData } from "../../reduxToolkit/fetchData";
+
 const ReduxToolkitTest = () => {
   /*
     초기 설정이 간편해졌습니다. 
@@ -9,9 +14,24 @@ const ReduxToolkitTest = () => {
     npm install @reduxjs/toolkit
    */
 
-  const onIncrease = () => {};
+  const counter = useSelector((state) => state.counter);
+  const data = useSelector((state) => state.fetchData.list);
 
-  const onDecrease = () => {};
+  const dispatch = useDispatch();
+
+  const onIncrease = () => {
+    dispatch(increment());
+  };
+
+  const onDecrease = () => {
+    dispatch(decrement());
+  };
+
+  useEffect(() => {
+    dispatch(fetchData({ name: "주강" }));
+    // fetchData() 를 호출할 때 인자로 어떤 객체를 넘기게 되면, 해당 객체는 action.meta.arg 로 들어가게된다.
+    console.log(data); // 여기서 빈 배열이 찍힘.
+  }, []);
 
   return (
     <div>
@@ -48,8 +68,14 @@ const ReduxToolkitTest = () => {
         <li>createAsyncThunk()</li>
         <li>createSelector()</li>
       </ul>
+      <div>{counter}</div>
       <button onClick={onIncrease}>+</button>
       <button onClick={onDecrease}>-</button>
+      <div>
+        {data?.map((user, index) => (
+          <li key={index}>{user.title}</li>
+        ))}
+      </div>
     </div>
   );
 };
