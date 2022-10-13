@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import counterSlice from "./counterSlice";
 import fetchDataSlice from "./fetchDataSlice";
+import buttonSlice from "./buttonSlice";
 
 // 관리할 slice
 
@@ -8,6 +9,7 @@ const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
     fetchData: fetchDataSlice.reducer,
+    button: buttonSlice.reducer,
   },
 });
 

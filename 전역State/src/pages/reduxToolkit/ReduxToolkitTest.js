@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../../reduxToolkit/action";
+import { click, decrement, increment } from "../../reduxToolkit/action";
 import { fetchData } from "../../reduxToolkit/fetchData";
 
 const ReduxToolkitTest = () => {
@@ -16,6 +16,10 @@ const ReduxToolkitTest = () => {
 
   const counter = useSelector((state) => state.counter);
   const data = useSelector((state) => state.fetchData.list);
+  const { alarm, rack } = useSelector((state) => state.button);
+
+  const state = useSelector((state) => state);
+  console.log(state);
 
   const dispatch = useDispatch();
 
@@ -32,6 +36,13 @@ const ReduxToolkitTest = () => {
     // fetchData() 를 호출할 때 인자로 어떤 객체를 넘기게 되면, 해당 객체는 action.meta.arg 로 들어가게된다.
     console.log(data); // 여기서 빈 배열이 찍힘.
   }, []);
+
+  const handleAlarmClick = () => {
+    dispatch(click("alarm")); // createAction 으로 만들어진 함수에 인자로 무언가를 넘겨주게되면, 이것은 payload: "alarm" 에 들어가게됨.
+  };
+  const handleRackClick = () => {
+    dispatch(click("rack"));
+  };
 
   return (
     <div>
@@ -71,6 +82,16 @@ const ReduxToolkitTest = () => {
       <div>{counter}</div>
       <button onClick={onIncrease}>+</button>
       <button onClick={onDecrease}>-</button>
+      <button onClick={handleAlarmClick}>Alarm</button>
+      <button onClick={handleRackClick}>Rack</button>
+      <div>
+        <h3>현재 Alarm state는?</h3>
+        <p>{alarm.toString()}</p>
+      </div>
+      <div>
+        <h3>현재 Rack state는?</h3>
+        <p>{rack.toString()}</p>
+      </div>
       <div>
         {data?.map((user, index) => (
           <li key={index}>{user.title}</li>

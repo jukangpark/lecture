@@ -1,47 +1,78 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { decrease, increase } from "../../redux/action";
+
 const Redux1 = () => {
-  // npm i redux
-  // npm i react-redux
+  const count = useSelector((state) => {
+    console.log(state);
+    return state.rootReducer.count;
+  });
 
-  // 리덕스에서 사용되는 키워드 숙지하기.
+  const button = useSelector((state) => state.buttonReducer);
 
-  /*  1. Action 액션 
-    - 상태에 어떤 변화가 필요하게 될 때, 액션을 발생시킨다. 
-    이는 하나의 ‘객체’이다. 
-    type 필드를 필수적으로 가지고 있어야 하고, 
-    그 외의 값들은 개발자 마음대로 넣어줄 수 있다.
+  useEffect(() => {
+    console.log(count);
+  }, []);
 
-  2. Action Creator 액션 생성자 함수
-    - 액션을 만드는 함수 (필수는 아님.. 액션을 발생시킬 때마다 직접 액션 객체를 작성할 수도 있음)
+  const dispatch = useDispatch();
 
-  3. Reducer 리듀서
-    - 변화를 일으키는 함수. 
-    리듀서는 2개의 매개변수를 받아온다.
-    1. 현재의 상태 2. 전달받은 액션
-    리듀서는 전달 받은 액션을 참고하여 새로운 state 를 만들어서 반환한다. 
-    이 리듀서는 useReducer 를 사용할 때 작성하는 리듀서와 똑같은 형태를 가지고 있다
+  const onIncrease = () => {
+    dispatch(increase());
+    // dispatch의 인자로 action 객체를 전달해주기 위해
+    // increase() 라는 액션 생성자 함수를 호출해서
+    // action 객체를 인자로 넣어줌.
+  };
 
+  const onDecrease = () => {
+    dispatch(decrease());
+  };
 
-  4. Store,스토어
-    - 리덕스에서는 한 App 당 하나의 Store 를 만들게 된다. 
-    스토어 안에는, 현재의 앱 상태와, 리듀서가 들어가 있고, 
-    추가적으로 몇가지의 내장함수들이 있다.
+  // 그리고 이 onIncrease 라는 함수는
+  // onClick 의 이벤트 핸들러로 넣어줄거임
+  // 이벤트 핸들러란 -> 특정 요소에서 발생한 이벤트를 처리하기위해 함수를 작성해서
+  // 연결하는 걸 의미함.
+  // 이벤트 핸들러가 연결된 특정 요소에서 지정된 타입의 이벤트가 발생하게되면,
+  // 웹 브라우저는 이벤트 리스너에 연결된 이벤트 핸들러를 실행함.
+  // 이벤트 핸들러 함수에는 이벤트 객체를 인자로 전달받을 수 있음.
+  // 이렇게 전달받은 이벤트객체를 활용하여 이벤트의 성질을 결정하거나, 이벤트의 기본 동작을 막을 수 있음.
 
+  const handleAlarmClick = () => {
+    console.log("알람을 클릭하였습니다.");
+    dispatch({ type: "BUTTON", payload: "Alarm" });
+  };
 
-  5. dispatch 디스패치
-    - 디스패치는 스토어의 내장함수 중 하나이다. 
-    디스패치는 액션을 발생시키는 것 이라고 이해하면 된다. 
-    dispatch(action) 이렇게 호출을 하면, 
-    스토어는 리듀서 함수를 실행시켜서 해당 액션을 처리하는 로직이 있다면, 
-    액션을 참고하여 새로운 상태를 만들어준다.
+  const handleRackClick = () => {
+    console.log("랙을을 클릭하였습니다.");
+    dispatch({ type: "BUTTON", payload: "Rack" });
+  };
 
-
-
-  6. subscribe 구독
-
-   */
   return (
     <div>
-      <h1>Redux Test</h1>
+      Redux1 페이지입니다.
+      <p>컨텐츠</p>
+      <h1>Redux 를 활용한 상태관리</h1>
+      <p>"useSelector()를 통해 리턴된 값은? :"{count}</p>
+      <div>
+        <button onClick={onIncrease}>
+          Redux 를 통해 state.count 의 값을 바꿔보아요 increase
+        </button>
+      </div>
+      <button onClick={onDecrease}>
+        Redux 를 통해 state.count 의 값을 바꿔보아요 decrease
+      </button>
+      <div>
+        <button onClick={handleAlarmClick}>Alarm</button>
+        <button onClick={handleRackClick}>Rack</button>
+
+        <p>현재 Button state 는?</p>
+        <div>
+          {button.Alarm ? "button.Alarm 은 true" : "button.Alarm 은 false"}
+        </div>
+        <div>
+          {button.Rack ? "button.Rack 은 true" : "button.Rack 은 false"}
+        </div>
+      </div>
+      <div></div>
     </div>
   );
 };

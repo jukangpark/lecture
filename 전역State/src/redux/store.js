@@ -1,4 +1,5 @@
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import buttonReducer from "./buttonReducer";
 import rootReducer from "./rootReducer";
 
 // createStore 는 첫번째 인자로 reducer 를 받는다.
@@ -28,7 +29,14 @@ import rootReducer from "./rootReducer";
 
 // const store = createStore(rootReducer, applyMiddleware(myLogger));
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer); // 한개의 리듀서
+
+const reducer = combineReducers({
+  rootReducer,
+  buttonReducer,
+});
+
+const store = createStore(reducer); // 두개의 리듀서
 
 export default store;
 

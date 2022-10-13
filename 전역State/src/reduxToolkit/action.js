@@ -23,6 +23,8 @@ import { createAction } from "@reduxjs/toolkit";
 export const increment = createAction("counter/increment");
 export const decrement = createAction("counter/decrement");
 
+export const click = createAction("button/click");
+
 let action = increment();
 // { type: "counter/increment" }
 

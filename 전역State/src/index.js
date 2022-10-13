@@ -6,7 +6,7 @@ import App from "./App";
 // import store from "./reduxThunk/store";
 // import store from "./reduxThunk프라미스/store";
 import store from "./reduxToolkit/store";
-
+//
 // import { Provider } from "react"; react가 가지구 있는 Provider를 사용하면 안댐!
 import { Provider } from "react-redux";
 
