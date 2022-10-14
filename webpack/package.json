@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack"
+    "dev": "webpack --mode=development --progress",
+    "build": "webpack --mode=production --progress"
   },
   "author": "",
   "license": "ISC",
