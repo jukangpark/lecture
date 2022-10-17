@@ -3,9 +3,10 @@ import Text from "./Text";
 import Name from "./Name";
 import Button from "./Button";
 
-const Home = () => {
+const Rendering = () => {
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
+
   // const incrementWeight = () => setWeight(weight + 1);
   // const incrementHeight = () => setHeight(height + 1);
 
@@ -68,7 +69,7 @@ const Home = () => {
 // 우리는 button 에서 props 로 함수를 넘겨주게 되는데, 자바스크립트에서 함수를 값 처럼 넘겨줄 수 있는 이유가 머임?
 // 자바스크립트에서 함수는 실제로 객체이다. -> 어떤 객체? 일급 객체
 
-export default Home;
+export default Rendering;
 
 // useEffect 를 사용할 때에는 첫 번째 파라미터에는 함수,
 // 두 번째 파라미터에는 의존값이 들어있는 배열 (deps) 을 넣습니다.

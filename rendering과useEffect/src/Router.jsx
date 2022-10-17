@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Home";
+import Rendering from "./Rendering";
 import UseEffectTest from "./pages/UseEffectTest";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/rendering" element={<Rendering />} />
         <Route path="/effect" element={<UseEffectTest />} />
       </Routes>
     </BrowserRouter>
