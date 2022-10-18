@@ -40,6 +40,12 @@
 // 애플리케이션 모듈 종속성을 해결해 웹 브라우저에서 이해할 수 있는 방식으로 모듈을 연결하고, 컴파일, 번들링 -> 빌드 합니다.
 // 다른 모듈 번들러를 사용해도 되나요? -> 네, React 애플리케이션을 작성하기 위해, 모듈 번들러(Parcel 등) 을 사용하거나, 번들링 없이 구성할 수 있습니다.
 
+// 기본적으로 webpack.config.js 파일을 사용할 필요가 없습니다.
+// 보통 프로젝트가 이 기능을 사용하려면 확장해야합니다.
+// 루트 폴더에 webpack.config.js 파일을 생성하면 webpack이 '자동'으로 이 파일을 '사용'합니다.
+// 특정 상황에 따라 다른 설정 파일을 사용하려면, 커맨드라인에서 --config 플래그를 사용하여 이를 변경할 수 있습니다.
+// webpack-cli init 명령을 사용하게 되면, 프로젝트 요구사항에 맞춘 webpack 설정 파일을 빠르게 생성할 수 있습니다.
+
 // 웹팩의 4가지 핵심 개념 (Core Concepts)
 /* 
 1. Entry - config파일에서 entry 속성을 설정해서 웹팩이 어떤 모듈로부터 시작해서,  디펜던시 그래프를 그려나갈지 명시해줄 수 있다. 'entry' 속성의 기본값은 './src/index.js'이지만 다른 Entry Point를 지정할 수도 있다. (여러 개도 지정 가능)
@@ -77,52 +83,49 @@
 
 // babel.config.js 로 넘어가서 설명을 따라가세요!
 
+// HtmlWebpackPlugin: HTML 파일에 번들링 된 자바스크립트 파일을 삽입해주고, 이 플러그인으로 빌드하면 HTML 파일로 아웃풋 만들어줌.
 const path = require("path");
-const distDir = path.resolve(__dirname, "dist");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const getAbsolutePath = (pathDir) => path.resolve(__dirname, pathDir);
+// webpack-cli 를 설치하게 되면, 커맨드 라인에서 거의 모든 설정 옵션을 조정할 수 있다.
+// npx webpack
 
-// ...
+// 일반적으로 module.exports 는 설정 객체를 가리킵니다.
+module.exports = (env, arg) => {
+  console.log(arg); // scripts 에서 webpack 을 실행시킬 때 주게되는 mode 가 arg 객체의 프로퍼티(mode)로 들어옴!
+  console.log(arg.mode); // production or development
 
-module.exports = (_env, argv) => {
-  const isProd = argv.mode === "production";
-  const isDev = !isProd;
-  // ...
+  const prod = arg.mode === "production";
+
+  // module.exports 에서 어떤 객체를 리턴하게됨.
   return {
-    entry: {
-      main: "./src/index.js",
-    },
+    mode: prod ? "production" : "development",
+    devtool: prod ? "hidden-source-map" : "eval",
+    entry: "./src/index.js",
     output: {
-      path: distDir,
-      filename: "assets/js/[name]",
+      //output.path 는 '절대경로'로 출처 디렉토리를 설정하는 것임.
+      path: path.join(__dirname, "/dist"),
+      filename: "[name].[contenthash].js",
+      // templateString 을 주게 되면 엔트리 이름을 그대로 사용하게 됩니다.
+      // contenthash 도 사용할 수 있습니다.
     },
-    // ...
+    devServer: {
+      port: 3000,
+      hot: true,
+    },
     resolve: {
-      extensions: ["js", "jsx", "json"],
-      alias: {
-        "@components": getAbsolutePath("src/components/"),
-        "@contexts": getAbsolutePath("src/contexts/"),
-        "@hooks": getAbsolutePath("src/hooks/"),
-        "@pages": getAbsolutePath("src/pages/"),
-      },
+      // 이러한 확장자를 순서대로 해석합니다.
+      // 여러 파일에서 이름이 동일하지만 다른 확장자를 가진 경우,
+      // webpack은 배열의 앞에서부터 파일을 해석하고 남은 것은 해석하지 않습니다.
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
     module: {
-      rules: [
-        {
-          test: /\.jsx?$/i,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                cacheDirectory: true,
-                cacheCompression: false,
-                envName: isProd ? "production" : "development",
-              },
-            },
-          ],
-        },
-      ],
+      // module 이라는 옵션은 프로젝트 내에서 "다른 유형의 모듈"을 처리하는 방법을 결정합니다.
+      // 왜냐하면 webpack 은 기본적으로 JavaScript와 JSON 파일만 이해할 수 있기 때문입니다.
+      rules: [{ test: /\.jsx?$/, use: ["babel-loader"] }],
+      // module.rules 는 모듈이 생성될 때, 요청과 일치하는 Rule 의 배열입니다.
+      // 로더를 모듈에 적용시키거나 파서를 수정할 수 있습니다.
     },
   };
 };

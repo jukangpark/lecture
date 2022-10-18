@@ -1,25 +1,12 @@
 // npm i @babel/preset-env @babel/preset-react -D
-modules.exports = {
-  presets: [["@babel/preset-env", { module: false }], "@babel/preset-react"],
-  plugins: [
-    "@babel/plugin-transform-runtime",
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties",
+module.exports = {
+  presets: [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "@babel/preset-typescript",
   ],
-  env: {
-    production: {
-      only: ["src"],
-      plugins: [
-        [
-          "transform-react-remove-prop-types",
-          { removeImport: true }, // import PropTypes from 'prop-types' 제거
-        ],
-        "@babel/plugin-transform-react-inline-elements",
-        "@babel/plugin-transform-react-constant-elements",
-      ],
-    },
-  },
 };
+
 // Babel 플러그인
 /* 
     React 앱에서 "클래스필드" 문법을 사용하기 위한 플러그인, "동적 가져오기" 를 사용하기 위한 플러그인 등을 설치합니다.
