@@ -12,9 +12,7 @@ const Box = ({ num }) => {
   }, []);
 
   // 화면에서 사라지는 것이 componentWillUnMount가 아님.
-
   // componentWillUnMount 는 DOM 에서 사라져야함.
-
   // document.getElementById("box55"); 라고 브라우저창에 검색하면 DOM 에 존재함
 
   return (
