@@ -19,17 +19,37 @@ const Home = () => {
   // - 함수의 인자로 사용될 수 있다.
   // - 함수의 결과로 사용될 수 있다.
 
+  // 자바스크립트에서 모든 값은 일급이다. 자바스크립트에서 모든 객체는 일급 객체이며,
+  // 함수도 객체이자 일급 객체이다.
+  // 그럼 일급 함수란 무엇인가?
+
   // # 일급 함수
   // - 함수를 값으로 다룰 수 있다.
   // - 조합성과 추상화의 도구
 
   const a = 10;
-  const add10 = (a) => a + 10;
-  const r = add10(a);
+  // 함수를 값으로 다룰 수 있다 -> 함수를 변수에 담을 수 있다는 이야기 이고,
+  const add10 = (num) => num + 10;
+  const r = add10(a); // console.log(r); // 20
 
-  const add5 = (a) => a + 5;
+  const add5 = (num) => num + 5;
   console.log(add5);
   console.log(add5(5));
+
+  const array = [1, 2, 3, 4, 5];
+
+  // array.prototype.map 이라는 이 함수는 '고차함수' Higher Order Function
+  // 함수를 변수에 담을 수 있다는 말은, 함수의 인자로 사용될 수 있다는 말임.
+  // 현재 array.prototype.map 과
+  // array.prototype.forEach 의 인자로 각각 함수가 들어갔음.
+  // 자바스크립트에서 함수가 '일급 객체' 이기 때문.  -> 함수가 '값'으로 다뤄지기 때문
+
+  array.map((num) => console.log("고차함수 map", num));
+
+  const array2 = array.map((num) => num + 1);
+  console.log(array2); // [2,3,4,5,6];
+
+  array.forEach((num) => console.log("forEach", num + 1));
 
   const f1 = () => () => 1;
   console.log(f1());
@@ -38,17 +58,38 @@ const Home = () => {
   console.log(f2);
   console.log(f2());
 
+  // 현재 addMaker 는 '고차 함수'
+  // addMaker 안에서 리턴해주는 익명함수는 '클로저'
+  // 왜냐하면 이 익명함수는 adMaker 에서 선언된 변수 a 를 참조하고 있고,
+  // addMaker 라는 함수가 콜스택에서 종료되었음에도 불구하고,
+  // 자신이 선언된 환경을(Lexical Scope)를 기억하기 때문에
+  // a 라는 변수를 참조할 수 있따.
+
   const addMaker = (a) => {
+    // const a = 1;  매개변수에서 이미 변수 a가 정의되었기 때문에, 똑같은 이름의 변수를 선언할 수 없음.
+    var a = 1; // 그런데 var a 라는 키워드로 변수를 선언하게 되면 변수를 중복 선언할 수 있기 때문에, 변수 a 선언가능
+    // var 키워드는 변수가 '중복선언'될 수 있기 때문에 선언이 가능함. -> 이말은 즉슨 '매개변수'라고 하는것은 '변수'이다.
+    // let a = 1; // let 키워드로 변수를 선언하게 되면 a 라는 이름으로 선언할 수가 없음.
     return function (b) {
       return a + b;
     };
   };
 
   console.log(addMaker(10)(5)); // 15
+
+  const closure = addMaker(10); // addMaker 라는 함수에 10 이라는 인자를 넘기고 callStack 에서 종료가 되었음.
+
+  console.log("이렇게 해도 같은 결과가 나와요", closure(5));
   // 이 예제는 매우 간단하지만, 값으로서의 함수, 클로저, 스코프 등의 많은 이야기를 담고 있다.
   // 함수는 값을 리턴할 수 있고, 함수는 값이 될 수 있다.
   // addMaker 는 내부에서 함수를 정의하고 리턴했다.
   // addMaker 가 리턴한 익명 함수는 '클로저'가 되었다.
+  // 아니 그러면 클로저가 뭐에요?
+
+  // 클로저란 자신이 생성될 때의 '환경'을 기억하는 "함수"다.
+
+  // 클로저는 자신이 생성될 때의 스코프에서 알 수 있었던 변수를 기억하는 "함수"다.
+
   // 리턴된 익명 함수 내부에서 a 가 정의된 적은 없지만,
   // a 를 참조하고 있고,
   // a 는 부모 스코프에 있다.
