@@ -2,15 +2,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Box from "../components/Box";
 
-const UseEffectTest = () => {
+const Effect = () => {
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
 
   useEffect(() => {
     console.log("페이지가 최초 렌더링"); // 이건 최초에만 호출됨.
 
+    // window.setInterval(() => {
+    //   console.log("hello");
+    // }, 1000);
+
     return () => {
       console.log("이 페이지가 willUnMount 할거야");
+      window.localStorage.setItem("effect 페이지", "종료되었음");
       // 컴포넌트가 unmount 될 때만 이 함수를 태우고 싶다면, 빈배열 [] 을 주면 되고, 그런데 unMount 가 된다는 말은 DOM 에서 사라져야한다는 말임.
       // react-router에 의해
       // 특정 값이 업데이트되기 직전에 cleanup 함수를 실행시키고 싶다면 deps에 해당 값을 넣어주면 됩니다.
@@ -66,9 +71,14 @@ const UseEffectTest = () => {
     setArray(array.filter((num) => num < 5));
   };
 
+  // 화면에서 사라진다고 해서
+  // componentWillUnmount cleanUp 함수가 호출되는 것은 아님
+  // dom 에서 사라져야함.
+  // https://it-eldorado.tistory.com/m/113
+
   return (
-    <div>
-      <h1>useEffectTest</h1>
+    <div id="effect55">
+      <h1>Effect</h1>
       <p>useEffectTest</p>
       <button onClick={addHeight}>height{height}</button>
       <button onClick={addWeight}>weight{weight}</button>
@@ -81,4 +91,4 @@ const UseEffectTest = () => {
   );
 };
 
-export default UseEffectTest;
+export default Effect;
