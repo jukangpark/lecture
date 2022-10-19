@@ -150,7 +150,7 @@ const PromiseTest = () => {
 
   console.log("Promise 생성자 함수로 만든 promise 객체는? ", promise1); // promise state: pending(대기중), promise result , promise 의 prototype 이 있어요. object 라는 prototype 도 있음.
 
-  let promise2 = new Promise((resolve, rejeect) => {
+  let promise2 = new Promise((resolve, reject) => {
     setTimeout(() => resolve("data"), 5000);
   });
 
