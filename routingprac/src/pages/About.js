@@ -30,7 +30,6 @@ import { useSearchParams } from "react-router-dom";
     set 메서드를 통해 특정 쿼리파라미터를 업데이트 할 수 있습니다. 
     만약 조회시에 쿼리파라미터가 존재하지 않는다면 null 로 조회됩니다. 
     두번째 원소는 쿼리파라미터를 객체형태로 업데이트할 수 있는 함수를 반환합니다.
-
 */
 
 const About = () => {
