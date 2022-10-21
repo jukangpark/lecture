@@ -1,8 +1,18 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 import About from "./pages/About";
 import Page404 from "./pages/Page404";
 import Profile from "./pages/Profile";
-import { useEffect } from "react";
+import Articles from "./pages/Articles";
+import Article from "./pages/Article";
+import MyPage from "./pages/MyPage";
+import Login from "./pages/auth/Login";
 
 // react-router 를 설치하면 자동으로 react-router-dom 이 종속성으로 포함되어 설치됩니다.
 // 코딩할 때는 react-router-dom 만 import 하여 사용해야합니다.
@@ -76,6 +86,32 @@ import { useEffect } from "react";
     전달할 때 사용합니다.
 
 
+
+    // Query String vs Path Variable 
+
+    // 일반적으로 우리가 어떤 자원(데이터)의 위치를 특정해서 보여줘야 할 경우 
+    // Path variable 을 쓰고, 정렬하거나 필터해서 보여줘야 할 경우에
+    // Query parameter 를 사용한다.
+    
+    //----example 
+
+    /users                           #Fetch a list of users
+    /users?occupation=programmer     #Fetch a list of programmer user
+    /users/123                       #Fetch a user who has id 123
+    
+    위의 방식으로 우리는 어디에 어떤 데이터(명사)를 요청하는 것인지 명확하게 정의할 수 있다.
+    하지만, 그 데이터를 가지고 뭘 하자는 것인지 동사는 빠져있다.
+    그 동사 역할을 하는 것이 GET, POST, PUT, DELETE 메서드 이다.
+
+    즉, Query string 과 Path variable 이 이들 메서드와 결합함으로써, "특정 데이터" 에 대한
+    CRUD 프로세스를 추가의 엔드포인트 없이 완결 지을 수 있게 되는 것이다.
+    
+    물론 이와 같은 규칙을 지키지 않더라도, 잘 돌아가는 API 를 만들 수는 있다.
+    하지만 지키지 않을 경우 서비스 엔드포인트는 복잡해지고, 개발시간/외부와 커뮤니케이션 코스트가 높아져,
+    큰 잠재적 손실을 초래할 수 있으니, 
+    이 규칙은 잘 지켜서 사용하는 것이 필수이다.
+
+
     ## 중첩된 라우팅
 
 
@@ -95,23 +131,67 @@ const Home = () => {
       <li>
         <Link to="/profiles">Profile</Link>
       </li>
+      <li>
+        <Link to="/articles">Article</Link>
+      </li>
       <h1>Home 페이지</h1>
     </div>
   );
 };
 
+// Layout 컴포넌트는 말그대로 공통 검포넌트를 호출할 공간(?) 같은 곳
+const Layout = () => {
+  // react-router 부가 기능  useNavigate();
+  // useNavigate 는 Link 컴포넌트를 사용하지 않고, 다른 페이지로 이동해야 하는 상황에 사용하는 Hook이다.
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  const goArticle = () => {
+    navigate("/articles");
+  };
+
+  return (
+    <div>
+      <header>
+        여기는 헤더 영역
+        <button onClick={goBack}> 뒤로 가기 </button>
+        <button onClick={goArticle}> 게시물 목록 </button>
+      </header>
+      <Outlet />
+      <footer>여기는 푸터 영역</footer>
+    </div>
+  );
+};
+
+// index props
+// Route 컴포넌트에는 index 라는 props 가 있다.
+// 이 props 는 path="/" 와 동일한 의미를 가진다.
+// Home 컴포넌트가 사용된 Route 컴포넌트를 다음과 같이 변경해보자.
+// 그리고, / 경로로 들어갔을 때 여전히 Home 페이지가 여전히 잘 나오고 있나요?
+// index prop은 상위 라우트의 경로와 일치하지만,
+// 그 이후에 경로가 주어지지 않았을때 보여지는 라우트를 설정할때 사용합니다.
+// path="/"와 동일한 역할을 하며 이를 좀 더 명시적으로 표현하는 방법입니다.
+
+// req.params 를 통해 파라미터안의 값을 서버에서 받을 수 있고,
+// req.query 를 통해 쿼리안의 값을 서버에서 받을 수 있음. (주로 GET 요청에 대한 처리를 함)
+
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />}>
-          <Route path=":username" element={<Profile />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profiles/:username" element={<Profile />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/articles" element={<Articles />}>
+            <Route path=":id" element={<Article />} />
+          </Route>
         </Route>
-        {/* <Route path="/articles" element={<Articles />} />
-        <Route path="/articles/:id" element={<Article />} /> */}
-
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>

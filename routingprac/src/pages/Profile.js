@@ -13,13 +13,13 @@ const data = {
 };
 
 const Profile = () => {
-  const params = useParams();
+  const { username } = useParams();
 
   useEffect(() => {
-    console.log(params);
+    console.log(username);
   }, []);
 
-  const profile = data[params.username];
+  const profile = data[username];
 
   return (
     <div>
