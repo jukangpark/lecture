@@ -21,6 +21,14 @@ module.exports = (env, arg) => {
     //
     mode: isDevelopment ? "development" : "production",
     entry: {
+      // 기본적으로, 모든 엔트리 청크는 사용하는 모든 모듈을 저장합니다.
+      // dependOn 옵션을 사용하면 한 엔트리 청크에서
+      // 다른 엔트리 청크로 모듈을 공유할 수 있습니다.
+      // 프로젝트에서 전역적으로 사용되는 라이브러리르들을 vendor 로 분리시킨다.
+      // 예를 들어, react, react-dom, redux, react-redux, react-router-dom, styled-components 등의
+      // 라이브러리를 넣으면 됨.
+      // app 청크에는 react-vendors 에 있는 모듈이 포함되지 않습니다.
+      // dependOn 옵션은 문자열 배열을 허용합니다.
       app: { import: "./src/index.js", dependOn: "react-vendors" },
       "react-vendors": ["react", "react-dom"],
     },
@@ -37,6 +45,14 @@ module.exports = (env, arg) => {
           ? "vendors/[name].js"
           : "[name].[contenthash:8].js";
       },
+      // 웹 애플리케이션을 제작하면서, HTML, CSS, JS 와 더불어,
+      // 아이콘, 사진, 비디오 등 다양한 Assets 을 추가하게 되는데,
+      // asset modules 은 로더를 추가하지 않아도!!! 이러한 asset 파일들을 사용할 수 있도록 도와주는 모듈이다.
+      // asset/resource
+      // asset/resource 모듈은 별도의 파일로 내보내고 URL을 추출한다.
+      // 다시 말해서 빌드 후 asset 파일을 출력 디렉터리로 내보내고, 해당 경로를 번들에 추가한다.
+      assetModuleFilename: "assets/[contenthash:8][ext][query]",
+      clean: true,
     },
 
     // Loaders -> webpack 은 기본적으로 'js', 'json' 만 이해하기 때문에,

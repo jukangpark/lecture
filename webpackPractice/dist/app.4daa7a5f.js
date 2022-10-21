@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebpackpractice=self.webpackChunkwebpackpractice||[]).push([[143],{522:(e,t,c)=>{var n=c(294),l=c(935),r=c(294);const a=function(){return r.createElement("div",null,r.createElement("h1",null,"웹팩 설정하기"))};l.render(n.createElement(a,null),document.getElementById("root"))}},e=>{e(e.s=522)}]);
