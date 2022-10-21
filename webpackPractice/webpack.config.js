@@ -11,6 +11,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // babel-loader 를 구성하기 위해
 // @babel/preset-env, @babel/preset-react 프리셋을 설치한 후, babel.config.js 파일을 만들어 구성합니다.
 
+// 빌드 툴은 실제 사용되는 함수가 무엇인지 파악해,
+// 그렇지 않은 함수는 최종 번들링 결과물에 포함하지 않습니다.
+// 이 과정에서 불필요한 코드가 제거되기 때문에 빌드 결과물의 크기가 작아집니다.
+// 이런 최적화 과정은 '가지치기(tree-shaking)'라고 불립니다.
+
 module.exports = (env, arg) => {
   const isDevelopment = arg.mode === "development";
 
@@ -18,7 +23,6 @@ module.exports = (env, arg) => {
     // mode 옵션을 사용하면 webpack 에 내장된 최적화 기능을 사용할 수 있습니다.
     // config 에서 mode 옵션을 사용하던지,
     // 혹은 webpack --mode=development 를 통해 CLI 의 인수로 전달해줄 수 있습니다.
-    //
     mode: isDevelopment ? "development" : "production",
     entry: {
       // 기본적으로, 모든 엔트리 청크는 사용하는 모든 모듈을 저장합니다.
