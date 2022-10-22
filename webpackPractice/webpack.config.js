@@ -4,7 +4,11 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// 기본적으로 이 플러그인은 성공적으로 다시 빌드 한 후,
+// webpack 의 output.path 디렉토리에 있는 모든 파일과
+// 사용하지 않는 모든 웹팩 자산을 제거합니다.
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+// CssMinimizerWebpackPlugin 플러그인은 cssnano 를 사용해 CSS 를 최적화(압축)합니다.
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // npm i babel-loader @babel/core -D
@@ -132,7 +136,7 @@ module.exports = (env, arg) => {
 
     devServer: {
       port: 3000,
-      compress: true,
+      compress: true, // 제공되는 모든 항목에 대해 gzip 압축을 활성화합니다.
       historyApiFallback: true,
       static: { directory: path.join(__dirname, "public") },
     },
