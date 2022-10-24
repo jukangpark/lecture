@@ -83,21 +83,43 @@ module.exports = (env, arg) => {
       // __dirname -> 현재 실행중인 폴더 경로
       path: path.join(__dirname, "/dist"),
       filename: (pathData) => {
-        if (isDevelopment) {
-          return "[name].js";
-        }
-        const { name } = pathData.chunk;
-        return name !== "app"
-          ? "vendors/[name].js"
-          : "[name].[contenthash:8].js";
+        // if (isDevelopment) {
+        //   return "[name].js";
+        // }
+        // const { name } = pathData.chunk;
+        // return name !== "app"
+        //   ? "vendors/[name].js"
+        //   : "[name].[contenthash:8].js";
       },
+
+      // 코드 스플리팅 Code Splitting 이란?
+      // 이 기능을 사용하여 코드를 다양한 번들로 분할하고,
+      // 요청에 따라 로드하거나, 병렬로 로드할 수 있습니다.
+      // 더 작은 번들로 만들고, 리소스 우선순위를 올바르게 제어하기 위해, 사용하며,
+      // 잘 활용하면 로드 시간에 큰 영향을 끼칠 수 있습니다.
+      /*
+      일반적인 코드 스플리팅 3가지 방법
+      1. Entry Points
+      2. Prevent Duplication
+      3. Dynamic Imports
+      */
+      // output.chunkFilename
+
+      // string = "[id].js" function (pathData, assetInfo) => string
+      // 이 옵션은 초기가 아닌 '청크 파일의 이름' 을 결정합니다.
+      // 청크 파일 요청을 위해 런타임에서 파일 이름을 생성해야 합니다.
+      // 이 때문에 [name] 및 [chunkhash] 와 같은 자리 표시자는 webpack 런타임을 사용하여,
+      // 청크 ID에서 자리 표시자 값으로의 매핑을 출력 번들에 추가해야 합니다.
+      // 이렇게하면 크기가 증가하고 청크의 자리 표시자 값이 변경 될 때 번들이 무효화 될 수 있습니다.
+      // 기본적으로 [id].js가 사용되거나 output.filename에서 유추 된 값이 사용됩니다([name]이 [id]로 대체되거나 [id].가 추가).
+
+      assetModuleFilename: "assets/[contenthash:8][ext][query]",
       // 웹 애플리케이션을 제작하면서, HTML, CSS, JS 와 더불어,
       // 아이콘, 사진, 비디오 등 다양한 Assets 을 추가하게 되는데,
-      // asset modules 은 로더를 추가하지 않아도!!! 이러한 asset 파일들을 사용할 수 있도록 도와주는 모듈이다.
-      // asset/resource
+      // asset modules 은 로더를 추가하지 않아도!!!
+      // 이러한 asset 파일들을 사용할 수 있도록 도와주는 모듈이다.
       // asset/resource 모듈은 별도의 파일로 내보내고 URL을 추출한다.
       // 다시 말해서 빌드 후 asset 파일을 출력 디렉터리로 내보내고, 해당 경로를 번들에 추가한다.
-      assetModuleFilename: "assets/[contenthash:8][ext][query]",
       clean: true,
     },
 
