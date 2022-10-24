@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      #div1 {
+        width: 300px;
+        border: 15px solid #999999;
+        padding: 50px;
+        margin: 20px;
+      }
+      #div2 {
+        width: 400px;
+        border: 15px solid #999999;
+        padding: 50px;
+        margin: 20px;
+        box-sizing: border-box;
+      }
+
+      @media screen and (max-width: 479px) {
+        body {
+          background-color: blue;
+        }
+      }
+      @media screen and (min-width: 480px) and (max-width: 1024px) {
+        body {
+          background-color: gray;
+          color: white;
+        }
+      }
+      @media screen and (min-width: 1025px) {
+        body {
+          background-color: orange;
+        }
+      }
+
+      .a {
+        display: inline; /* the default for span */
+        width: 100px;
+        height: 100px;
+        padding: 5px;
+        border: 1px solid blue;
+        background-color: black;
+      }
+      .b {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        padding: 5px;
+        border: 1px solid blue;
+        background-color: black;
+      }
+      .c {
+        display: block;
+        width: 100px;
+        height: 100px;
+        padding: 5px;
+        border: 1px solid blue;
+        background-color: black;
+      }
+
+      .header > #container1 {
+        float: left;
+      }
+
+      .header > #container2 {
+        clear: both;
+        /* The element is pushed below both left and right floated elements */
+        /* float: left; */
+      }
+
+      /* stylesheet 에서 id 와 class 이름은 서로 똑같이 가져갈 수 있기는 함.*/
+
+      .div1 {
+        float: left;
+        padding: 10px;
+        border: 3px solid #73ad21;
+      }
+
+      .div2 {
+        padding: 10px;
+        border: 3px solid red;
+      }
+
+      .div3 {
+        float: left;
+        padding: 10px;
+        border: 3px solid #73ad21;
+      }
+
+      .div4 {
+        padding: 10px;
+        border: 3px solid red;
+        clear: left;
+      }
+
+      #static {
+        /* position: static; default 값 */
+        left: 30px;
+        border: 3px solid whitesmoke;
+      }
+
+      #relative {
+        position: relative;
+        left: 30px;
+        border: 3px solid whitesmoke;
+      }
+
+      #fixed {
+        position: fixed;
+        /*
+          viewport 를 기준으로 position이 됨.
+          이말은 즉슨 스크롤을 한다고 하더라도, 항상 같은 포지션에 위치함
+        */
+        top: 0;
+        border: 3px solid whitesmoke;
+        width: 100%;
+        height: 50px;
+      }
+
+      #relative2 {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        border: 3px solid #73ad21;
+      }
+
+      #absolute {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73ad21;
+        /*
+          An element with position: absolute;
+          is positioned relative to the nearest positioned ancestor
+          (instead of positioned relative to the viewport, like fixed).
+          However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.
+          Note: Absolute positioned elements are removed from the normal flow, and can overlap elements.
+          Here is a simple example:
+
+        */
+      }
+
+      #sticky {
+        /* position: -webkit-sticky; */
+        /* safari */
+        /* 
+        Internet Explorer does not support sticky positioning.
+        */
+        position: sticky;
+        top: 100px;
+        background-color: green;
+        border: 2px solid #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Demonstrating the Box Model</h2>
+
+    <p>
+      The CSS box model is essentially a box that wraps around every HTML
+      element. It consists of: borders, padding, margins, and the actual
+      content.
+    </p>
+
+    <div id="div1">
+      This text is the content of the box. Lorem Ipsum is simply dummy text of
+      the printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took a
+      galley of type and scrambled it to make a type specimen book. It has
+      survived not only five centuries, but also the leap into electronic
+      typesetting, remaining essentially unchanged. It was popularised in the
+      1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+      and more recently with desktop publishing software like Aldus PageMaker
+      including versions of Lorem Ipsum.
+    </div>
+
+    <div id="div2">
+      This text is the content of the box. Lorem Ipsum is simply dummy text of
+      the printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took a
+      galley of type and scrambled it to make a type specimen book. It has
+      survived not only five centuries, but also the leap into electronic
+      typesetting, remaining essentially unchanged. It was popularised in the
+      1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+      and more recently with desktop publishing software like Aldus PageMaker
+      including versions of Lorem Ipsum.
+    </div>
+
+    <h2>미디어 쿼리를 활용한 반응형 웹 만들기</h2>
+    <p>핸드폰</p>
+    <p>테블릿</p>
+    <p>데스크탑</p>
+
+    <h2>inline vs inline-block vs block</h2>
+    <span>inline 요소</span>
+
+    <p>inline 요소와 inline-block 요소의 차이는 뭔가요?</p>
+    <p>inline-block 은 width 와 height 를 지정해줄 수 있습니다.</p>
+
+    <p>block 요소와 inline-block 요소의 차이는 뭔가요?</p>
+    <p>block 요소는 line-break 가 불가능하다, 따라서</p>
+
+    <h2>display: inline</h2>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+      consequat scelerisque elit sit amet consequat. Aliquam erat volutpat.
+      <span class="a">inline</span> <span class="a">inline</span> gravida nisl
+      sit amet facilisis. Nullam cursus fermentum velit sed laoreet.
+    </div>
+
+    <h2>display: inline-block</h2>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+      consequat scelerisque elit sit amet consequat. Aliquam erat volutpat.
+      <span class="b">inline-block</span>
+      <span class="b">inline-block</span> gravida nisl sit amet facilisis.
+      Nullam cursus fermentum velit sed laoreet.
+    </div>
+
+    <h2>display: block</h2>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+      consequat scelerisque elit sit amet consequat. Aliquam erat volutpat.
+      <span class="c">block</span> <span class="c">block</span> gravida nisl sit
+      amet facilisis. Nullam cursus fermentum velit sed laoreet.
+    </div>
+
+    <h1>Float : left</h1>
+
+    <header class="header">
+      <ul id="container1">
+        <li>block1</li>
+        <li>block2</li>
+        <li>block3</li>
+        <li>block4</li>
+      </ul>
+      <ul id="container2">
+        <li>block1</li>
+        <li>block2</li>
+        <li>block3</li>
+        <li>block4</li>
+      </ul>
+      <ul id="container3">
+        <li>block1</li>
+        <li>block2</li>
+        <li>block3</li>
+        <li>block4</li>
+      </ul>
+    </header>
+
+    <h2>Without clear</h2>
+    <div class="div1">div1</div>
+    <div class="div2">
+      div2 - Notice that div2 is after div1 in the HTML code. However, since
+      div1 floats to the left, the text in div2 flows around div1.
+    </div>
+    <br /><br />
+
+    <h2>With clear</h2>
+    <div class="div3">div3</div>
+    <div class="div4">
+      div4 - Here, clear: left; moves div4 down below the floating div3. The
+      value "left" clears elements floated to the left. You can also clear
+      "right" and "both".
+    </div>
+
+    <h2>The Position Property</h2>
+    <p>
+      The position property specifies the type of positioning method used for an
+      element
+    </p>
+
+    <p>There are five different position values</p>
+    <ul>
+      <li>static</li>
+      <li>relative</li>
+      <li>fixed</li>
+      <li>absolute</li>
+      <li>sticky</li>
+    </ul>
+
+    <p>HTML elements are positioned static by default.</p>
+    <div id="static">div 요소는 포지션 default 가 static 입니다.</div>
+    <div id="relative">relative div 요소</div>
+    <div id="fixed">fixed div 요소</div>
+    <div id="relative2">
+      This div element has position: relative;
+      <div id="absolute">absolute div 요소</div>
+    </div>
+
+    <div id="sticky">position: sticky;</div>
+
+    <section style="height: 1000px">section1</section>
+    <section style="height: 1000px">section1</section>
+    <section style="height: 1000px">section1</section>
+
+    <script>
+      console.log("Hello World!");
+    </script>
+  </body>
+</html>
+
+<!--The CSS Box Model-->
+<!-- All HTML elements can be considered as boxes. -->
+
+<!-- 
+  Explanation of the different parts:
+  Content - The content of the box, where text and images appear
+  Padding - Clears an area around the content. The padding is transparent
+  Border - A border that goes around the padding and content
+  Margin - Clears an area outside the border. The margin is transparent
+  The box model allows us to add a border around elements, and to define space between elements.  
+-->
+
+<!-- Total element width = width + left padding + right padding + left border + right border + left margin + right margin
+  Total element height = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin -->
