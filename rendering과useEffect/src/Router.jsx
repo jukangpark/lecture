@@ -1,19 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Rendering from "./Rendering";
-import Effect from "./pages/Effect";
-import Effect1 from "./pages/Effect1";
-import Effect2 from "./pages/Effect2";
-import Effect3 from "./pages/Effect3";
+import Page1 from "./pages/Page1";
+import Page2 from "./pages/Page2";
+import Page3 from "./pages/Page3";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/rendering" element={<Rendering />} />
-        <Route path="/effect" element={<Effect />} />
-        <Route path="/effect1" element={<Effect1 />} />
-        <Route path="/effect2" element={<Effect2 />} />
-        <Route path="/effect3" element={<Effect3 />} />
+        <Route path="/page1" element={<Page1 />} />
+        <Route path="/page2" element={<Page2 />} />
+        <Route path="/page3" element={<Page3 />} />
       </Routes>
     </BrowserRouter>
   );
