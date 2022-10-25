@@ -57,7 +57,7 @@ import Login from "./pages/auth/Login";
     리엑트 라우터를 사용하면 브라우저의 
     History API 를 사용하여, 브라우저의 주소창의 값만 변경하고,
     웹 개발자 도구에 들어가서
-    window.history.next() 하면 다음 페이지로 이동됨.
+    window.history.forward() 하면 다음 페이지로 이동됨.
     그에 맞는 페이지를 보여주게 됩니다.
 
     <a> 태그 대신 <Link /> 컴포넌트를 사용해야 하는 이유?
