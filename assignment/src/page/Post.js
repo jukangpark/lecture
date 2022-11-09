@@ -5,23 +5,6 @@ const Post = () => {
   const [content, setContent] = useState("");
   const [password, setPassword] = useState("");
 
-  //   const utc = new Date(); // 현재 시간 (Locale) 한국 기준
-  //   //   console.log(utc); // 여기서는 한국 시간이 잘나오지만 localStorage 에 저장할때는 제대로된 값이 안나옴.
-
-  //   const diff = 9 * 60 * 60 * 1000; // 한국 (KST) 국제 표준시 (UTC) 보다 9시간 더빠름
-
-  //   const koreanTime = new Date(utc.getTime() + diff);
-
-  //   console.log(koreanTime);
-
-  // 1920년 1월 1일 00:00:00 UTC 와 주어진 날짜까지의 밀리세컨드를 반환.
-
-  //   const diff = 9 * 60 * 60 * 1000; // 한국 (KST) 국제 표준시 (UTC) 보다 9시간 더빠름
-  //   console.log(utc + diff);
-
-  //   const koreanDate = new Date(utc + diff);
-  //   console.log(koreanDate);
-
   const handleSubmit = (e) => {
     // form 을 제출할때
     e.preventDefault();
@@ -31,11 +14,16 @@ const Post = () => {
 
     // const now = new Date(); // 현재 시간
     const utc = new Date(); // 현재 시간 (Locale) UTC 기준
-    //   console.log(utc); // 여기서는 한국 시간이 잘나오지만 localStorage 에 저장할때는 제대로된 값이 안나옴.
+    //   console.log(utc);
+    // 콘솔에는 영국을 기준으로 한 시간이 아니라,  한국을 기준으로한 시간이 잘나오지만 실제 localStorage 에 저장할때는 한국을 기준으로한 값이 안나옴.
+
+    console.log(utc);
 
     const diff = 9 * 60 * 60 * 1000; // 한국 (KST) 국제 표준시 (UTC) 보다 9시간 더빠름
 
-    const koreanTime = new Date(utc.getTime() + diff);
+    // Date.prototype.getTime() 1970년도 1월 1일 00:00:00 UTC 와 현재 날짜 사이의 경과 시간(밀리초) 를 반환함.
+
+    const koreanTime = new Date(utc.getTime() + diff); // 인자로 밀리세컨드를 넣어주게되면, 1970년도를 기준으로 한 시간을 알려줌.
 
     const newPost = [
       {
