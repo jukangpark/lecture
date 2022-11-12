@@ -25,7 +25,6 @@ const Router = () => {
           <Route path="/post" element={<Post />} />
           <Route path="/post/:id" element={<Detail />} />
           <Route path="/post/:id/update" element={<Update />} />
-          {/* <Route path="/post/:id/delete" element={<Delete />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
