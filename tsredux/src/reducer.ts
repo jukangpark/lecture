@@ -2,18 +2,26 @@ interface IAction {
   type: string;
 }
 
-const initialState = 0;
+export interface IState {
+  name: string;
+  age: number;
+}
+
+const initialState = {
+  name: "asdf",
+  age: 9,
+};
 
 // 리듀서
-function counter(state = initialState, action: IAction) {
+function reducer(state = initialState, action: IAction) {
   switch (action.type) {
     case "INCREASE":
-      return state + 1;
+      return { ...state, age: state.age + 1 };
     case "DECREASE":
-      return state - 1;
+      return { ...state, age: -1 };
     default:
       return state;
   }
 }
 
-export default counter;
+export default reducer;
