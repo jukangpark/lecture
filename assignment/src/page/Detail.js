@@ -9,15 +9,12 @@ const Detail = () => {
   const postId = pathname.split("/")[2];
   const navigate = useNavigate();
   useEffect(() => {
-    // console.log(pathname);
     // console.log(pathname.slice(6, pathname.length)); //    /post/166760330 이 string 을 잘라야함.j
     // const postId = pathname.slice(6, pathname.length);
     // console.log(postId);
     // const posts = JSON.parse(localStorage.getItem("posts"));
     // const post = posts.find((post) => String(post.id) === postId);
     // setPost(post);
-
-    console.log(postId);
 
     const posts = JSON.parse(localStorage.getItem("posts"));
     const post = posts.find((post) => String(post.id) === postId);
