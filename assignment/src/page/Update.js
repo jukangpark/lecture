@@ -18,11 +18,11 @@ const Update = () => {
     const posts = JSON.parse(localStorage.getItem("posts"));
     // setPosts(posts);
 
-    const post = posts.find((post) => String(post.id) === postId);
-    setPost(post);
-    setTitle(post.title);
-    setContent(post.content);
-    setPassword(post.password);
+    const willUpdatePost = posts.find((post) => String(post.id) === postId);
+    setPost(willUpdatePost);
+    setTitle(willUpdatePost.title);
+    setContent(willUpdatePost.content);
+    setPassword(willUpdatePost.password);
   }, [pathname]);
 
   const handleTitle = (e) => {
