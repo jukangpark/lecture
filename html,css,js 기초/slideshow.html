@@ -14,10 +14,6 @@
         box-sizing: border-box;
       }
 
-      body {
-        margin: 0;
-      }
-
       #slideContainer {
         width: 500px;
         height: 175px;
@@ -34,28 +30,20 @@
         width: 500px;
         display: block;
       }
-
-      /* Slideshow container */
-      .carousel-inner img {
-        width: 100%;
-        height: 100%;
-      }
     </style>
   </head>
   <body>
     <div>
-      <div id="container">
-        <div id="slideContainer">
-          <div id="slide">
-            <img class="imgBox" src="./img/img_nature_wide.jpeg" />
-            <img class="imgBox" src="./img/img_snow_wide.jpeg" />
-            <img class="imgBox" src="./img/img_mountains_wide.jpeg" />
-          </div>
+      <div id="slideContainer">
+        <div id="slide">
+          <img class="imgBox" src="./img/img_nature_wide.jpeg" />
+          <img class="imgBox" src="./img/img_snow_wide.jpeg" />
+          <img class="imgBox" src="./img/img_mountains_wide.jpeg" />
         </div>
       </div>
     </div>
+
     <script>
-      console.log("hello world");
       const slide = document.getElementById("slide");
       const imgBoxs = document.getElementsByClassName("imgBox");
 
