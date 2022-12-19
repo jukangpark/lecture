@@ -46,63 +46,37 @@
     <script>
       const slide = document.getElementById("slide");
       const imgBoxs = document.getElementsByClassName("imgBox");
+      const slideContainer = document.getElementById("slideContainer");
 
-      window.setInterval(() => {
-        slide.style.transitionDuration = "400ms";
-        slide.style.marginLeft = "-500px";
-        window.setTimeout(() => {
-          slide.appendChild(imgBoxs[0]);
-          slide.style.transitionDuration = "";
-          slide.style.marginLeft = "";
-        }, [400]);
-      }, [3000]);
+      let timerId;
+
+      const slideFunc = () => {
+        timerId = window.setInterval(() => {
+          slide.style.transitionDuration = "400ms";
+          slide.style.marginLeft = "-500px";
+          window.setTimeout(() => {
+            slide.appendChild(imgBoxs[0]);
+            slide.style.transitionDuration = "";
+            slide.style.marginLeft = "";
+          }, [400]);
+        }, [3000]);
+      };
+
+      slideFunc();
+
+      slideContainer.addEventListener("mouseenter", () => {
+        console.log(
+          "SlideContainer 에 마우스 enter 이벤트가 발생하였으며, slide 가 멈추었습니다."
+        );
+        window.clearTimeout(timerId);
+      });
+
+      slideContainer.addEventListener("mouseleave", () => {
+        console.log(
+          "SlideContainer 에 마우스 enter 이벤트가 발생하였으며, slide 를 다시 실행"
+        );
+        slideFunc();
+      });
     </script>
-
-    <!-- <div
-      id="myCarousel"
-      class="carousel slide"
-      data-ride="carousel"
-      data-interval="500"
-    >
-      <ul class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ul>
-
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="./img/img_nature_wide.jpeg"
-            alt="Los Angeles"
-            width="1100"
-            height="500"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="./img/img_snow_wide.jpeg"
-            alt="Chicago"
-            width="1100"
-            height="500"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="./img/img_mountains_wide.jpeg"
-            alt="New York"
-            width="1100"
-            height="500"
-          />
-        </div>
-      </div>
-
-      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div> -->
   </body>
 </html>
