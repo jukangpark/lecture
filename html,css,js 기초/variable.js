@@ -263,9 +263,14 @@ let letTest1 = 1; // 전역 변수
 */
 
 // 객체와 배열의 소개
+// 자바스크립트에서 객체는 키(key) 와 값(value) 로 구성된 프로퍼티(property) 들의 집합이다.
 
 // 함수란?
 // 어떤 작업을 수행하기 위해 필요한 문(statement) 들의 집합을 정의한 코드 블럭
+
+// function 키워드
+
+// const arrow = () => {}
 
 const jukang = {
   age: 28,
