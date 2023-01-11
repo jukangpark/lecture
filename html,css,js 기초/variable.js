@@ -265,8 +265,15 @@ let letTest1 = 1; // 전역 변수
 // 객체와 배열의 소개
 // 자바스크립트에서 객체는 키(key) 와 값(value) 로 구성된 프로퍼티(property) 들의 집합이다.
 
+// < 함수 목차 >
+
 // 함수란?
 // 어떤 작업을 수행하기 위해 필요한 문(statement) 들의 집합을 정의한 코드 블럭
+// 선언 vs 호출
+// parameter vs argument
+// 인자 vs 인수
+// 즉시 실행 함수
+// 콜백함수
 
 // function 키워드
 
@@ -282,3 +289,26 @@ function isPig(human) {
 }
 
 console.log(isPig(jukang));
+
+// 즉시 실행 함수
+(() => {
+  console.log("즉시 실행함수");
+})();
+
+// 콜백 함수
+window.setInterval(() => {
+  console.log("3초마다 반복됨"); // 콜백함수 -> argument 로 넘기는 함수
+}, 3000);
+
+// 동기와 비동기
+
+// ajax 통신
+// json 데이터
+// ajax 요청에 대한 서버의 응답 (HTML, XML , JSON)
+
+// JSON (JavaScript Object Notation)
+// 순수한 텍스트로 구성된 데이터
+// 서버와 클라이언트
+
+// http 프로토콜
+// req 와 res
